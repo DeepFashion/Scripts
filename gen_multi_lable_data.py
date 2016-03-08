@@ -11,6 +11,10 @@ DIRNAME="/home/peeyush/deep-fashion/data/jabongImages/"
 db = PostgresqlDatabase('fashion', user='fashion', password='fashion', host='localhost')
 db.connect()
 
+running_index = 0
+running_label_dict = {}
+
+
 class JabongPageData(Model):
     id = PrimaryKeyField(primary_key=True)
     brand          = CharField()
@@ -73,6 +77,7 @@ def get_color(product_url):
     else:
         return 'ColorFieldAbsent'
 
+
 labels={
 1:'tops-tees-shirts',            
 2:'women-sweatshirts',     
@@ -94,6 +99,15 @@ try:
 except OSError:
     pass
 
+def get_label(text):
+    global running_index
+    global running_label_dict
+    label = running_label_dict.get(text, -1)
+    if label == -1:
+        running_label_dict[text] = running_index+1
+        running_index+=1
+    return str(running_label_dict[text])
+
 def gen_data():
     for key, val in labels.iteritems():
         print key, val
@@ -107,7 +121,7 @@ def gen_data():
                 tmpname = row.image_1280.replace("/", "_")
                 fname = DIRNAME+tmpname
                 if os.path.isfile(fname):
-                    result+='dataset/'+tmpname+' '+str(key)+str(color)+'\n'
+                    result+='dataset/'+tmpname+' '+get_label(str(key)+str(color))+'\n'
                     count+=1
             else:
                 missing_count+=1
