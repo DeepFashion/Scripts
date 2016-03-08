@@ -7,13 +7,15 @@ import operator
 # Run CREATE INDEX requestURL_idx ON jabongpagedata ("requestURL"); #
 #####################################################################
 
+classes = ['1Black','1Blue','8Black','1White','1Multi','1Pink','8Blue','8Multi','1Green','7Blue','1Red','1Grey','1NavyBlue', '1Yellow', '1OffWhite', '7Black', '4Black', '1Orange','8White','4Blue','8Pink','8Red','4Multi','1Purple','3Multi','8NavyBlue','1Beige','9Black','1AquaBlue','8Green','1Peach']
+
 DIRNAME="/home/peeyush/deep-fashion/data/jabongImages/"
 db = PostgresqlDatabase('fashion', user='fashion', password='fashion', host='localhost')
 db.connect()
 
 running_index = 0
 running_label_dict = {}
-
+running_label_dict_count = {}
 
 class JabongPageData(Model):
     id = PrimaryKeyField(primary_key=True)
@@ -67,6 +69,12 @@ def printColorStats():
         print key
 
 
+def printClassStats():
+    global running_label_dict_count
+    sorted_running_label_dict_count = sorted(running_label_dict_count.items(), key=operator.itemgetter(1), reverse=True)
+    for key in sorted_running_label_dict_count:
+        print key
+
 def get_color(product_url):
     data=JabongPageData.select(JabongPageData.id, JabongPageData.productTitle, JabongPageData.requestURL, JabongPageData.desc1).where(JabongPageData.requestURL==product_url)
     if len(data)>0:
@@ -102,13 +110,16 @@ except OSError:
 def get_label(text):
     global running_index
     global running_label_dict
+    global running_label_dict_count
     label = running_label_dict.get(text, -1)
     if label == -1:
         running_label_dict[text] = running_index+1
         running_index+=1
+    running_label_dict_count[text]=running_label_dict_count.get(text,0)+1
     return str(running_label_dict[text])
 
 def gen_data():
+    global classes
     for key, val in labels.iteritems():
         print key, val
         complete_data = JabongData.select(JabongData.id, JabongData.product_link, JabongData.image_1280, JabongData.name, JabongData.category).where(JabongData.category==val)
@@ -120,8 +131,9 @@ def gen_data():
                 color = get_color(product_url)
                 tmpname = row.image_1280.replace("/", "_")
                 fname = DIRNAME+tmpname
-                if os.path.isfile(fname):
-                    result+='dataset/'+tmpname+' '+get_label(str(key)+str(color))+'\n'
+                label_text = str(key)+str(color)
+                if os.path.isfile(fname) and label_text in classes:
+                    result+='dataset/'+tmpname+' '+get_label(label_text)+'\n'
                     count+=1
             else:
                 missing_count+=1
@@ -139,3 +151,4 @@ def gen_data():
 
 if __name__ == '__main__':
     gen_data()
+    printClassStats()
