@@ -1,0 +1,44 @@
+1 tops-tees-shirts
+Count is  29142
+Missing Count is  339
+2 women-sweatshirts
+Count is  1839
+Missing Count is  22
+3 leggings-jeggings
+Count is  3205
+Missing Count is  37
+4 capris-shorts-skirts
+Count is  4963
+Missing Count is  56
+5 tunics
+Count is  2190
+Missing Count is  25
+6 sweaters
+Count is  1868
+Missing Count is  22
+7 trousers-jeans
+Count is  4986
+Missing Count is  56
+8 dresses-jumpsuits-dresses
+Count is  13088
+Missing Count is  142
+9 winter-jackets
+Count is  2380
+Missing Count is  28
+{u'Pink': 4604, u'Blue': 9584, u'Multi': 7305, u'Brown': 1311, u'Purple': 1592, u'Grey': 2999, u'Maroon': 1235, u'NavyBlue': 2986, u'Yellow': 2298, u'Black': 12478, u'Beige': 1479, u'Orange': 1851, u'Green': 3410, u'OffWhite': 1989, u'White': 5228, u'Red': 3312}
+(u'Black', 12478)
+(u'Blue', 9584)
+(u'Multi', 7305)
+(u'White', 5228)
+(u'Pink', 4604)
+(u'Green', 3410)
+(u'Red', 3312)
+(u'Grey', 2999)
+(u'NavyBlue', 2986)
+(u'Yellow', 2298)
+(u'OffWhite', 1989)
+(u'Orange', 1851)
+(u'Purple', 1592)
+(u'Beige', 1479)
+(u'Brown', 1311)
+(u'Maroon', 1235)

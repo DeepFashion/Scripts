@@ -11,6 +11,7 @@ DIRNAME="/home/peeyush/deep-fashion/data/jabongImages/"
 db = PostgresqlDatabase('fashion', user='fashion', password='fashion', host='localhost')
 db.connect()
 
+color_list = ['Black','Blue','Multi','White','Pink','Green','Red','Grey','NavyBlue','Yellow','OffWhite','Orange','Purple','Beige','Brown','Maroon']
 running_index = 0
 running_label_dict = {}
 running_label_dict_count = {}
@@ -118,6 +119,7 @@ def get_label(text):
     return str(running_label_dict[text])
 
 def gen_data():
+    global color_list
     for key, val in labels.iteritems():
         print key, val
         complete_data = JabongData.select(JabongData.id, JabongData.product_link, JabongData.image_1280, JabongData.name, JabongData.category).where(JabongData.category==val)
@@ -129,7 +131,7 @@ def gen_data():
                 color = get_color(product_url)
                 tmpname = row.image_1280.replace("/", "_")
                 fname = DIRNAME+tmpname
-                if os.path.isfile(fname):
+                if os.path.isfile(fname) and color in color_list:
                     result+='dataset/'+tmpname+' '+str(key)+' '+get_label(color)+'\n'
                     count+=1
             else:
