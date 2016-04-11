@@ -58,6 +58,8 @@ class JabongData(Model):
 
 def printClassStats():
     for tag in tags_list:
+        print 'Data for tag ', tag
+        print running_label_dict[tag]
         print running_label_dict_count[tag]
         sorted_running_label_dict_count = sorted(running_label_dict_count[tag].items(), key=operator.itemgetter(1), reverse=True)
         for key in sorted_running_label_dict_count:
@@ -167,7 +169,9 @@ if __name__ == '__main__':
 
 
 
-# {u'Blue': 8061, u'Brown': 1142, u'Multi': 6218, u'Purple': 1359, u'Grey': 2636, u'Maroon': 1067, u'NavyBlue': 2568, u'Yellow': 1933, u'Black': 10250, u'Beige': 1251, u'Pink': 3846, u'Orange': 1577, u'Green': 2836, u'OffWhite': 1641, u'White': 4327, u'Red': 2820}
+# Data for tag  Color
+# {u'Pink': 7, u'Blue': 9, u'Multi': 4, u'Brown': 16, u'Purple': 3, u'Maroon': 12, u'Grey': 1, u'Yellow': 5, u'NavyBlue': 6, u'Black': 2, u'Beige': 8, u'Orange': 10, u'Green': 14, u'OffWhite': 11, u'White': 15, u'Red': 13}
+# {u'Pink': 3846, u'Blue': 8061, u'Multi': 6218, u'Brown': 1142, u'Purple': 1359, u'Maroon': 1067, u'Grey': 2636, u'Yellow': 1933, u'NavyBlue': 2568, u'Black': 10250, u'Beige': 1251, u'Orange': 1577, u'Green': 2836, u'OffWhite': 1641, u'White': 4327, u'Red': 2820}
 # (u'Black', 10250)
 # (u'Blue', 8061)
 # (u'Multi', 6218)
@@ -184,7 +188,9 @@ if __name__ == '__main__':
 # (u'Beige', 1251)
 # (u'Brown', 1142)
 # (u'Maroon', 1067)
-# {'polyester': 13582, 'nylon': 444, 'crepe': 2506, 'chiffon': 561, 'leather': 125, 'blended': 1861, 'denim': 421, 'viscose': 3869, 'fleece': 298, 'acrylic': 731, 'linen': 311, 'knit': 265, 'modal': 255, 'net': 359, 'rayon': 1488, 'wool': 654, 'satin': 206, 'georgette': 2972, 'jersey': 207, 'cotton': 22417}
+# Data for tag  Fabric
+# {'polyester': 2, 'wool': 19, 'crepe': 8, 'chiffon': 10, 'leather': 20, 'blended': 13, 'denim': 18, 'viscose': 7, 'fleece': 14, 'acrylic': 17, 'linen': 9, 'satin': 15, 'modal': 12, 'rayon': 4, 'net': 6, 'nylon': 16, 'knit': 11, 'georgette': 3, 'jersey': 5, 'cotton': 1}
+# {'polyester': 13582, 'wool': 654, 'crepe': 2506, 'chiffon': 561, 'leather': 125, 'blended': 1861, 'denim': 421, 'viscose': 3869, 'fleece': 298, 'acrylic': 731, 'linen': 311, 'satin': 206, 'modal': 255, 'rayon': 1488, 'net': 359, 'nylon': 444, 'knit': 265, 'georgette': 2972, 'jersey': 207, 'cotton': 22417}
 # ('cotton', 22417)
 # ('polyester', 13582)
 # ('viscose', 3869)
@@ -205,6 +211,8 @@ if __name__ == '__main__':
 # ('jersey', 207)
 # ('satin', 206)
 # ('leather', 125)
+# Data for tag  Style
+# {u'Graphic': 8, u'Checked': 6, u'Solid': 4, u'Washed': 7, u'Embroidered': 3, u'Printed': 1, u'Striped': 5, u'Embellished': 2}
 # {u'Graphic': 502, u'Checked': 624, u'Solid': 24262, u'Washed': 546, u'Embroidered': 2849, u'Printed': 21687, u'Striped': 1648, u'Embellished': 1414}
 # (u'Solid', 24262)
 # (u'Printed', 21687)
